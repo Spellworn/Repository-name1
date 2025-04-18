@@ -1,10 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.jsx";
 
-createRoot(document.getElementById('root')).render(
+const DATA = [
+  { id: "todo-0", name: "В унитаз сходит", completed: true },
+  { id: "todo-1", name: "Покурит веип", completed: false },
+  { id: "todo-2", name: "Посмотрет Лобанов", completed: false },
+];
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <App tasks={DATA} />
   </StrictMode>,
-)
+);
