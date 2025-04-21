@@ -10,9 +10,10 @@ export const TasksPage = () => {
   const [data, setData] = useState(DATA);
 
   const addNewTask = (text) => {
-    setData((prev) =>
-      prev.push({ id: nanoid(), name: text, completed: false }),
-    );
+    setData((prev) => [
+      ...prev,
+      { id: nanoid(), name: text, completed: false },
+    ]);
   };
   console.log(data);
   return (

@@ -3,7 +3,14 @@ import { useCallback, useState } from "react";
 
 export const AddTask = (props) => {
   const [text, setText] = useState("");
-  const onClick = useCallback(() => props.addNewTask(text), [text]);
+  const onClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      props.addNewTask(text);
+      setText("");
+    },
+    [text],
+  );
 
   return (
     <form className={styles.container}>
@@ -16,8 +23,9 @@ export const AddTask = (props) => {
         id="new-todo"
         className={styles.inputTodo}
         onChange={(event) => setText(event.target.value)}
+        value={text}
       />
-      <button className={styles.buttonAdd} type="button" onClick={onClick}>
+      <button className={styles.buttonAdd} type="submit" onClick={onClick}>
         Добавит
       </button>
     </form>
