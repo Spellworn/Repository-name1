@@ -15,6 +15,7 @@ export const TasksPage = () => {
       { id: nanoid(), name: text, completed: false },
     ]);
   };
+
   console.log(data);
   return (
     <section>

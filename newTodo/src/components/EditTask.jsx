@@ -1,14 +1,9 @@
 import styles from "../modulesCss/EditTask.module.css";
 
-export const EditTask = (props) => {
+export const EditTask = () => {
   return (
-    <div className={styles.buttonWrapper}>
-      <button className={styles.buttonEdit} type="button">
-        Редактироват
-      </button>
-      <button className={styles.buttonDelete} type="button">
-        Удалит
-      </button>
-    </div>
+    <button className={styles.buttonEdit} type="button">
+      Редактироват
+    </button>
   );
 };
