@@ -11,6 +11,8 @@ export const TaskList = (props) => {
           completed={task.completed}
           key={task.id}
           deleteTask={props.deleteTask}
+          editTask={props.editTask}
+          completeTask={props.completeTask}
         />
       ))}
     </ul>
