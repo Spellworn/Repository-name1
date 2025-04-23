@@ -1,5 +1,6 @@
 import styles from "../modulesCss/Task.module.css";
 import { EditTask } from "./EditTask.jsx";
+import { DeleteTask } from "./DeleteTask.jsx";
 
 export const Task = (props) => {
   return (
@@ -13,7 +14,10 @@ export const Task = (props) => {
       <label className={styles.textTodo} htmlFor={props.id}>
         {props.name}
       </label>
-      <EditTask />
+      <div className={styles.buttonWrapper}>
+        <EditTask />
+        <DeleteTask deleteTask={props.deleteTask} id={props.id} />
+      </div>
     </li>
   );
 };

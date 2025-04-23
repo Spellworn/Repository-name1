@@ -15,7 +15,11 @@ export const TasksPage = () => {
       { id: nanoid(), name: text, completed: false },
     ]);
   };
-  console.log(data);
+
+  const deleteTask = (id) => {
+    setData((prev) => prev.filter((element) => element.id !== id));
+  };
+
   return (
     <section>
       <h1 className={styles.title}>Домашнее задание слушаем</h1>
@@ -23,7 +27,7 @@ export const TasksPage = () => {
       <SortTask />
       <h3 className={styles.title2}>{data.length} задания осталос</h3>
 
-      <TaskList tasks={data} />
+      <TaskList tasks={data} deleteTask={deleteTask} />
     </section>
   );
 };
