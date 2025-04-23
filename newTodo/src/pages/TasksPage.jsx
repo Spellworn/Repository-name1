@@ -5,7 +5,6 @@ import { DATA } from "../data/todoData.js";
 import { TaskList } from "../components/TaskList.jsx";
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { DeleteTask } from "../components/DeleteTask.jsx";
 
 export const TasksPage = () => {
   const [data, setData] = useState(DATA);
@@ -17,10 +16,8 @@ export const TasksPage = () => {
     ]);
   };
 
-  // const [del, setDel] = useState(DATA);
-
   const deleteTask = (id) => {
-    setData((prev) => prev.splice(id, 1));
+    setData((prev) => prev.filter((element) => element.id !== id));
   };
 
   return (
@@ -31,7 +28,6 @@ export const TasksPage = () => {
       <h3 className={styles.title2}>{data.length} задания осталос</h3>
 
       <TaskList tasks={data} deleteTask={deleteTask} />
-      {/*<DeleteTask deleteTask={deleteTask} />*/}
     </section>
   );
 };
