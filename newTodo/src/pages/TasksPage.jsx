@@ -36,30 +36,30 @@ export const TasksPage = () => {
   const deleteTask = (id) => {
     setData((prev) => prev.filter((element) => element.id !== id));
   };
-  // TODO: вынести в общую функцию (43-51; 54-62)
-  // TODO: перенести логику таска в хук (разделить на два хука, один редактированием, другой фильтром(12-27)
+  // TODO: вынести в общую функцию (43-51; 54-62) !!(СДЕЛАЛ, НО БУБТА ЕСТЬ МНЕНИЕ, ЧТО КОСТЫЛЬ ПРИСУТСТВУЕТ)
+  // TODO: перенести логику таска в хук (разделить на два хука, один редактирование, другой фильтр(12-27)
   // TODO: убрать кнопку редактировать при эдите, стилька навалить на эдит, кнопка отмена рабоба
   // TODO: поменять иконку приложения в табе в браузере
-  const editTask = (text, id) => {
+
+  const dataTask = (text, id) => {
     setData((prev) =>
       prev.map((task) => {
-        if (task.id === id) {
+        if (task.id === id && text !== null) {
           return { ...task, name: text };
+        }
+        if (task.id === id && text === null) {
+          return { ...task, completed: !task.completed };
         }
         return task;
       }),
     );
   };
 
+  const editTask = (text, id) => {
+    dataTask(text, id);
+  };
   const completeTask = (id) => {
-    setData((prev) =>
-      prev.map((task) => {
-        if (task.id === id) {
-          return { ...task, completed: !task.completed };
-        }
-        return task;
-      }),
-    );
+    dataTask(null, id);
   };
 
   console.log(data);

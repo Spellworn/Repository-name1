@@ -13,13 +13,15 @@ export const EditTask = (props) => {
 
   return (
     <div>
-      <button
-        className={styles.buttonEdit}
-        type="button"
-        onClick={props.toggleEdit}
-      >
-        Редактироват
-      </button>
+      {!props.isEdit && (
+        <button
+          className={styles.buttonEdit}
+          type="button"
+          onClick={props.toggleEdit}
+        >
+          Редактироват
+        </button>
+      )}
       {props.isEdit && (
         <EditInput
           editTask={props.editTask}
