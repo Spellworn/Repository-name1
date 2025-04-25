@@ -1,33 +1,35 @@
 import styles from "../modulesCss/App.module.css";
 import { AddTask } from "../components/AddTask.jsx";
 import { SortTask } from "../components/SortTask.jsx";
-import { DATA } from "../data/todoData.js";
 import { TaskList } from "../components/TaskList.jsx";
-import { useState } from "react";
-import { nanoid } from "nanoid";
+import { useData } from "../hooks/useData.js";
+import { useFilter } from "../hooks/useFilter.js";
 
 export const TasksPage = () => {
-  const [data, setData] = useState(DATA);
+  const { addNewTask, completeTask, editTask, deleteTask, data } = useData();
+  const [setFilter, filteredTask] = useFilter(data);
 
-  const addNewTask = (text) => {
-    setData((prev) => [
-      ...prev,
-      { id: nanoid(), name: text, completed: false },
-    ]);
-  };
+  // TODO: вынести в общую функцию (43-51; 54-62) ✅(СДЕЛАЛ, НО БУБТА ЕСТЬ МНЕНИЕ, ЧТО КОСТЫЛЬ ПРИСУТСТВУЕТ)
+  // TODO: перенести логику таска в хук (разделить на два хука, один редактирование, другой фильтр(12-27) ✅ (Сделана, на удивелня)
+  // TODO: убрать кнопку редактировать при эдите, стилька навалить на эдит, кнопка отмена рабоба
+  // TODO: поменять иконку приложения в табе в браузере ✅
 
-  const deleteTask = (id) => {
-    setData((prev) => prev.filter((element) => element.id !== id));
-  };
+  console.log(data);
 
   return (
     <section>
       <h1 className={styles.title}>Домашнее задание слушаем</h1>
       <AddTask addNewTask={addNewTask} />
-      <SortTask />
-      <h3 className={styles.title2}>{data.length} задания осталос</h3>
+      <SortTask setFilter={setFilter} />
+      <h3 className={styles.title2}>{filteredTask.length} задания осталос</h3>
 
-      <TaskList tasks={data} deleteTask={deleteTask} />
+      <TaskList
+        tasks={filteredTask}
+        deleteTask={deleteTask}
+        editTask={editTask}
+        completeTask={completeTask}
+      />
+      {/*<EditInput />*/}
     </section>
   );
 };
