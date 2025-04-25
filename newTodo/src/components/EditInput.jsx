@@ -1,4 +1,4 @@
-import styles from "../modulesCss/AddTask.module.css";
+import styles from "../modulesCss/EditInput.module.css";
 import { useCallback, useState } from "react";
 
 export const EditInput = (props) => {
@@ -14,18 +14,18 @@ export const EditInput = (props) => {
   );
 
   return (
-    <form>
+    <form className={styles.container}>
       <input
         type="text"
         className={styles.inputTodo}
         onChange={(event) => setText(event.target.value)}
         value={text}
       />
-      <button className={styles.buttonAdd} type="button" onClick={onClick}>
+      <button className={styles.buttonEdit} type="submit" onClick={onClick}>
         Добавит
       </button>
       <button
-        className={styles.buttonAdd}
+        className={styles.buttonCancel}
         type="button"
         onClick={() => props.setIsEdit(false)}
       >
