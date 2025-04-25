@@ -7,7 +7,7 @@ export const TaskList = (props) => {
       {props?.tasks?.map((task) => (
         <Task
           id={task.id}
-          name={task.name}
+          name={task.todo}
           completed={task.completed}
           key={task.id}
           deleteTask={props.deleteTask}
