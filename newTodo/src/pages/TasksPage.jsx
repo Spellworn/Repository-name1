@@ -14,14 +14,17 @@ export const TasksPage = () => {
   // TODO: убрать кнопку редактировать при эдите, стилька навалить на эдит, кнопка отмена рабоба
   // TODO: поменять иконку приложения в табе в браузере ✅
 
-  console.log(data);
+  console.log(filteredTask);
 
   return (
     <section>
       <h1 className={styles.title}>Домашнее задание слушаем</h1>
       <AddTask addNewTask={addNewTask} />
       <SortTask setFilter={setFilter} />
-      <h3 className={styles.title2}>{filteredTask.length} задания осталос</h3>
+      <h3 className={styles.title2}>
+        {filteredTask === undefined && "Падажи"}
+        {filteredTask !== undefined && filteredTask.length} задания осталос
+      </h3>
 
       <TaskList
         tasks={filteredTask}

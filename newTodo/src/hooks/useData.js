@@ -1,14 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
-import { DATA } from "../data/todoData.js";
 
 export const useData = () => {
-  const [data, setData] = useState(DATA);
+  const [data, setData] = useState();
+
+  const url = "https://dummyjson.com/todos";
+
+  async function getData() {
+    try {
+      const response = await fetch(url);
+      return await response.json();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    getData().then((response) => {
+      setData(response.todos);
+    });
+  }, []);
 
   const addNewTask = (text) => {
     setData((prev) => [
       ...prev,
-      { id: nanoid(), name: text, completed: false },
+      { id: nanoid(), todo: text, completed: false },
     ]);
   };
 
